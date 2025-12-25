@@ -15,6 +15,9 @@ export default defineConfig(({ mode }) => {
         react(),
         tailwindcss(), // 新增：使用 tailwindcss 插件
       ],
+      build: {
+        outDir: 'docs', // 将输出目录改为 docs 以便 GitHub Pages 部署
+      },
       define: {
         'process.env.API_KEY': JSON.stringify(env.GEMINI_API_KEY),
         'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY)
