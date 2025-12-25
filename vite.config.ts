@@ -13,10 +13,19 @@ export default defineConfig(({ mode }) => {
       },
       plugins: [
         react(),
-        tailwindcss(), // 新增：使用 tailwindcss 插件
+        tailwindcss(),
       ],
+      css: {
+        transformer: 'lightningcss',
+      },
       build: {
-        outDir: 'docs', // 将输出目录改为 docs 以便 GitHub Pages 部署
+        outDir: 'docs',
+        cssMinify: 'lightningcss',
+        rollupOptions: {
+          output: {
+            manualChunks: undefined,
+          }
+        }
       },
       define: {
         'process.env.API_KEY': JSON.stringify(env.GEMINI_API_KEY),

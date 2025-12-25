@@ -38,7 +38,7 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col font-sans text-ink">
+    <div className="min-h-screen flex flex-col font-serif text-ink bg-paper">
       {/* Navbar */}
       <header className="bg-c-brown text-paper py-4 shadow-md">
         <div className="container mx-auto px-4 flex justify-between items-center">
