@@ -1,3 +1,20 @@
+@import "tailwindcss";
+
+@theme {
+  --color-paper: #f7f5f0;
+  --color-ink: #2c2c2c;
+  --color-c-red: #8b0000;
+  --color-c-gold: #b8860b;
+  --color-c-brown: #5d4037;
+  --color-wuxing-jin: #d4af37;
+  --color-wuxing-mu: #2e7d32;
+  --color-wuxing-shui: #1565c0;
+  --color-wuxing-huo: #c62828;
+  --color-wuxing-tu: #795548;
+  --font-serif: "Noto Serif SC", serif;
+  --font-cursive: "Ma Shan Zheng", cursive;
+}
+
 /* 全局样式 */
 * {
   margin: 0;
@@ -6,7 +23,7 @@
 }
 
 body {
-  font-family: 'Noto Serif SC', serif;
+  font-family: var(--font-serif);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
