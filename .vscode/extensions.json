@@ -1,0 +1,17 @@
+{
+  "recommendations": [
+    "dsznajder.es7-react-js-snippets",
+    "bradlc.vscode-tailwindcss",
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "mattpocock.ts-error-translator",
+    "formulahendry.auto-rename-tag",
+    "christian-kohler.path-intellisense",
+    "wix.vscode-import-cost",
+    "usernamehw.errorlens",
+    "eamodio.gitlens",
+    "vscode-icons-team.vscode-icons",
+    "naumovs.color-highlight",
+    "aaron-bond.better-comments"
+  ]
+}

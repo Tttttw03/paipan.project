@@ -402,7 +402,7 @@ export const TiYongAnalysis: React.FC<TiYongAnalysisProps> = ({ result }) => {
 
         {/* 说明 */}
         <div className="text-xs text-stone-500 bg-stone-100/50 p-3 rounded border border-stone-200 leading-relaxed">
-          <p><span className="font-bold">注：</span>体为己，用为事。本卦看开始，互卦看过程，变卦看结局，<span className="font-bold">卦是动态的过程</span>。</p>
+          <p><span className="font-bold">注：</span>体为己，用为事。本卦看开始，互卦看过程，变卦看结局，<span className="font-bold text-c-red">卦是动态的过程</span>。</p>
           <p className="mt-1">体用生克关系不仅限于看本、变卦，还有用卦与用卦、体卦与体卦之间，按重要性依次进行分析。</p>
         </div>
       </div>

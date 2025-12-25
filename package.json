@@ -1,0 +1,26 @@
+{
+  "name": "梅花易数排盘---plum-blossom-divination",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "postinstall": "chmod +x ./node_modules/.bin/vite"
+  },
+  "dependencies": {
+    "iconv-lite": "^0.7.0",
+    "lunar-typescript": "^1.8.6",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.14.0",
+    "@vitejs/plugin-react": "^5.0.0",
+    "eslint": "^9.39.2",
+    "ts-prune": "^0.10.3",
+    "typescript": "~5.8.2",
+    "vite": "^6.2.0"
+  }
+}

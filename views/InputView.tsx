@@ -17,7 +17,11 @@ export const InputView: React.FC<InputViewProps> = ({ method, onSubmit, onBack }
   const [num1, setNum1] = useState<string>('');
   const [num2, setNum2] = useState<string>('');
 
-  const [textInput, setTextInput] = useState<string>('');
+  // 文字输入已移除，用户直接填写上/下卦数值
+
+  // 用户为文字起卦手动输入的上/下卦数值（例如笔画数或声调计数）
+  const [upperValueInput, setUpperValueInput] = useState<string>('');
+  const [lowerValueInput, setLowerValueInput] = useState<string>('');
 
   const [objCount, setObjCount] = useState<string>('');
 
@@ -74,40 +78,11 @@ export const InputView: React.FC<InputViewProps> = ({ method, onSubmit, onBack }
   };
 
   const handleWordSubmit = () => {
-    if (!textInput.trim()) return;
-    const text = textInput.trim();
-    const n = text.length;
-
-    // 分割为上/下部分（上取较少，若偶数则平分）
-    const upCount = n % 2 === 0 ? n / 2 : Math.floor(n / 2);
-    const downCount = n - upCount;
-
-    let upperSource = 0;
-    let lowerSource = 0;
-
-    // 按用户设计的区间选择数源，未提供笔画/声调时使用合理的回退计算（最小改动实现）
-    if (n > 10) {
-      // 直接使用字数
-      upperSource = upCount;
-      lowerSource = downCount;
-    } else if (n >= 4 && n <= 10) {
-      // 声调计数：回退策略为用字符码估算声调 (charCode % 4) + 1
-      for (let i = 0; i < upCount; i++) upperSource += (text.charCodeAt(i) % 4) + 1;
-      for (let i = upCount; i < n; i++) lowerSource += (text.charCodeAt(i) % 4) + 1;
-    } else {
-      // 1 < n <= 3：笔画数优先；回退为 (charCode % 20)
-      for (let i = 0; i < upCount; i++) upperSource += text.charCodeAt(i) % 20;
-      for (let i = upCount; i < n; i++) lowerSource += text.charCodeAt(i) % 20;
-    }
-
-    // 防止出现 0 导致不可预期映射，回退为计数值
-    if (upperSource === 0) upperSource = upCount;
-    if (lowerSource === 0) lowerSource = downCount;
-
-    // 按设计，动爻由 (上数 + 下数) % 6 决定；这里传回 sum，由服务端再做 mod6 映射以保证统一行为
-    const movingSum = upperSource + lowerSource;
-
-    onSubmit(upperSource, lowerSource, movingSum);
+    // 文字输入已移除，用户需手动填写上/下卦数值
+    const u = parseInt(upperValueInput) || 1;
+    const l = parseInt(lowerValueInput) || 1;
+    const yaoSource = u + l;
+    onSubmit(u, l, yaoSource);
   };
 
   const handleObjectSubmit = () => {
@@ -190,18 +165,25 @@ export const InputView: React.FC<InputViewProps> = ({ method, onSubmit, onBack }
 
       {method === InputMethodId.WORDS && (
         <div className="space-y-4">
-          <div className="p-4 bg-stone-100 text-xs text-stone-500 mb-4 rounded">
-            注：此演示版本通过字数和字符编码模拟起卦。
+          <div className="p-4 bg-stone-100 text-xs text-stone-500 mb-4 rounded text-sm">
+            请根据字数划分上卦和下卦。若字数相等就平分为上卦与下卦；若字数不等，则少的一半为上卦（取“天”之清轻之义），多的一半为下卦（取“地”之重浊之义）。
           </div>
-          <div>
-            <label className="block text-ink font-serif mb-2">所听/所见文字</label>
-            <textarea
-              value={textInput}
-              onChange={e => setTextInput(e.target.value)}
-              className="input-field h-32"
-              placeholder="输入文字..."
-            />
+
+          <div className="p-4 bg-stone-50 text-xs text-stone-600 mb-4 rounded text-sm">
+            提示：当 1 &lt; 字数 ≤ 3 时：用笔画数；当 4 ≤ 字数 ≤ 10 时：用声调计数；当 字数 &gt; 10 时：直接用字数作为数源。
           </div>
+
+          <div className="space-y-4">
+            <div>
+              <label className="block text-ink font-serif mb-2">上卦数值</label>
+              <input type="number" value={upperValueInput} onChange={e => setUpperValueInput(e.target.value)} className="input-field" placeholder="笔画总和/声调总和/字数总和" />
+            </div>
+            <div>
+              <label className="block text-ink font-serif mb-2">下卦数值</label>
+              <input type="number" value={lowerValueInput} onChange={e => setLowerValueInput(e.target.value)} className="input-field" placeholder="笔画总和/声调总和/字数总和" />
+            </div>
+          </div>
+
           <button onClick={handleWordSubmit} className="w-full btn-primary">起卦</button>
         </div>
       )}
