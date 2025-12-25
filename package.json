@@ -10,6 +10,7 @@
     "postinstall": "chmod +x ./node_modules/.bin/vite"
   },
   "dependencies": {
+    "@tailwindcss/vite": "^4.1.18",
     "iconv-lite": "^0.7.0",
     "lunar-typescript": "^1.8.6",
     "react": "^19.2.0",

@@ -6,7 +6,7 @@ import tailwindcss from '@tailwindcss/vite'; // 新增：引入 tailwindcss 插�
 export default defineConfig(({ mode }) => {
     const env = loadEnv(mode, '.', '');
     return {
-      base: '/paipan.com/', // 新增：GitHub Pages 部署路径
+      base: '/paipan.project/', // 新增：GitHub Pages 部署路径
       server: {
         port: 5173,
         host: '0.0.0.0',
