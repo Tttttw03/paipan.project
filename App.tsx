@@ -42,9 +42,12 @@ function App() {
       {/* Navbar */}
       <header className="bg-c-brown text-paper py-4 shadow-md">
         <div className="container mx-auto px-4 flex justify-between items-center">
-          <h1 className="text-2xl font-cursive tracking-wider" onClick={resetApp} style={{ cursor: 'pointer' }}>
-            梅花易数 <span className="text-sm font-serif opacity-80">在线排盘</span>
-          </h1>
+          <div className="flex items-center gap-3" onClick={resetApp} style={{ cursor: 'pointer' }}>
+            <img src="/logo.png" alt="Logo" className="w-10 h-10 object-contain rounded-full border border-paper/20 shadow-inner bg-white/10 p-0.5" />
+            <h1 className="text-2xl font-cursive tracking-wider">
+              梅花易数 <span className="text-sm font-serif opacity-80">在线排盘</span>
+            </h1>
+          </div>
           <div className="hidden sm:block font-serif text-sm opacity-70">
             以玄制玄
           </div>
